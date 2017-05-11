@@ -42,7 +42,7 @@ app.get('/todos/:id', (req, res) =>{
         return res.status(400).send('id not found');
       }
       res.send({todo});
-    }).catch((e) => res.send());
+    }).catch((e) => res.status(404).send());
   }
 });
 
