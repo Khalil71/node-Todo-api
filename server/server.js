@@ -49,13 +49,13 @@ app.get('/todos/:id', (req, res) =>{
 app.delete('/todos/:id', (req, res) => {
   var id = req.params.id;
   if(!ObjectID.isValid(id)){
-    return res.status(404).send('Please provide a valid ID.');
+    return res.status(400).send('Please provide a valid ID.');
   }
   Todo.findByIdAndRemove(id).then((todo) => {
     if(!todo){
-      return res.status(400).send('Doc not found.');
+      return res.status(404).send('Doc not found.');
     }
-    res.status(200).send( todo + '\n' + 'Has been deleted.')
+    res.status(200).send({todo});
   }).catch((e) => res.status(404).send());
 });
 
