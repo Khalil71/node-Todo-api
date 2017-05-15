@@ -153,11 +153,11 @@ describe('DELETE /todos/:id ', () => {
       .end(done);
   });
 
-  it('should return 400 if ObjectID is invalid', (done) => {
+  it('should return 404 if ObjectID is invalid', (done) => {
     request(app)
       .delete('/todos/123')
       .set('x-auth', users[1].tokens[0].token)
-      .expect(400)
+      .expect(404)
       .end(done);
   });
 });
